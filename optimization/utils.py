@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import warnings
+from copy import deepcopy
 from pyomo.environ import *
 
 warnings.filterwarnings('ignore')
@@ -10,6 +11,8 @@ def plot_model(model, include_obj=True):
     N = 100
     xs = np.linspace(0, 4, N)
     ys = np.linspace(0, 4, N)
+
+    model = deepcopy(model)
 
     X, Y = np.meshgrid(xs, ys)
 
@@ -38,3 +41,5 @@ def plot_model(model, include_obj=True):
     plt.xlabel("x")
     plt.ylabel("y")
     plt.title("2D Optimization with Pyomo")
+    plt.yticks([0,1,2,3,4])
+    plt.grid()
